@@ -13,8 +13,8 @@ public interface IUserService
     IEnumerable<User> GetAll();
     User GetById(int id);
     void Register(RegisterRequest model);
-    void Update(int id, UpdateRequest model);
-    void Delete(int id);
+    //void Update(int id, UpdateRequest model);
+    //void Delete(int id);
 }
 
 public class UserService : IUserService
@@ -61,7 +61,7 @@ public class UserService : IUserService
     {
         // validate
         if (_context.Users.Any(x => x.Email == model.Email))
-            throw new AppException("Username '" + model.Email + "' is already taken");
+            throw new AppException("Email Address '" + model.Email + "' is already taken");
 
         // map model to new user object
         var user = _mapper.Map<User>(model);
@@ -80,7 +80,7 @@ public class UserService : IUserService
 
         // validate
         if (model.Email != user.Email && _context.Users.Any(x => x.Email == model.Email))
-            throw new AppException("Username '" + model.Email + "' is already taken");
+            throw new AppException("Email Address '" + model.Email + "' is already taken");
 
         // hash password if it was entered
         if (!string.IsNullOrEmpty(model.Password))

@@ -57,17 +57,17 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
-    [HttpPut("{id}")]
-    public IActionResult Update(int id, UpdateRequest model)
-    {
-        _userService.Update(id, model);
-        return Ok(new { message = "User updated successfully" });
-    }
+    //[HttpPut("{id}")]
+    //public IActionResult Update(int id, UpdateRequest model)
+    //{
+    //    _userService.Update(id, model);
+    //    return Ok(new { message = "User updated successfully" });
+    //}
 
-    [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
-    {
-        _userService.Delete(id);
-        return Ok(new { message = "User deleted successfully" });
-    }
+    //[HttpDelete("{id}")]
+    //public IActionResult Delete(int id)
+    //{
+    //    _userService.Delete(id);
+    //    return Ok(new { message = "User deleted successfully" });
+    //}
 }
