@@ -1,6 +1,6 @@
 namespace WebApi.Models.Users;
 
-public class AuthenticateResponse
+public class Response
 {
     public int Id { get; set; }
     public string FirstName { get; set; }

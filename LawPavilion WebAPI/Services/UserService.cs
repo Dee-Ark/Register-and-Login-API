@@ -9,10 +9,10 @@ using WebApi.Models.Users;
 
 public interface IUserService
 {
-    AuthenticateResponse Authenticate(AuthenticateRequest model);
+    Response Authenticate(Login model);
     IEnumerable<User> GetAll();
     User GetById(int id);
-    void Register(RegisterRequest model);
+    void Register(Register model);
     //void Update(int id, UpdateRequest model);
     //void Delete(int id);
 }
@@ -33,16 +33,16 @@ public class UserService : IUserService
         _mapper = mapper;
     }
 
-    public AuthenticateResponse Authenticate(AuthenticateRequest model)
+    public Response Authenticate(Login model)
     {
         var user = _context.Users.SingleOrDefault(x => x.Email == model.Email);
 
         // validate
         if (user == null || !BCrypt.Verify(model.Password, user.PasswordHash))
-            throw new AppException("Username or password is incorrect");
+            throw new AppException("Email or password is incorrect");
 
         // authentication successful
-        var response = _mapper.Map<AuthenticateResponse>(user);
+        var response = _mapper.Map<Response>(user);
         response.Token = _jwtUtils.GenerateToken(user);
         return response;
     }
@@ -57,7 +57,7 @@ public class UserService : IUserService
         return getUser(id);
     }
 
-    public void Register(RegisterRequest model)
+    public void Register(Register model)
     {
         // validate
         if (_context.Users.Any(x => x.Email == model.Email))
@@ -99,12 +99,10 @@ public class UserService : IUserService
         _context.SaveChanges();
     }
 
-    // helper methods
-
     private User getUser(int id)
     {
         var user = _context.Users.Find(id);
-        if (user == null) throw new KeyNotFoundException("User not found");
+        if (user == null) throw new KeyNotFoundException("User details not found");
         return user;
     }
 }

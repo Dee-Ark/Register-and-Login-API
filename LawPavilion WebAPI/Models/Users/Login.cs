@@ -2,7 +2,7 @@ namespace WebApi.Models.Users;
 
 using System.ComponentModel.DataAnnotations;
 
-public class AuthenticateRequest
+public class Login
 {
     [Required]
     public string Email { get; set; }

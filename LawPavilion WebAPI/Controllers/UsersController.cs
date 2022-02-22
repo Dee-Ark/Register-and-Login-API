@@ -28,16 +28,16 @@ public class UsersController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("authenticate")]
-    public IActionResult Authenticate(AuthenticateRequest model)
+    [HttpPost("Login")]
+    public IActionResult Authenticate(Login model)
     {
         var response = _userService.Authenticate(model);
         return Ok(response);
     }
 
     [AllowAnonymous]
-    [HttpPost("register")]
-    public IActionResult Register(RegisterRequest model)
+    [HttpPost("Register")]
+    public IActionResult Register(Register model)
     {
         _userService.Register(model);
         return Ok(new { message = "Registration successful" });
