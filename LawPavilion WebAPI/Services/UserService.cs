@@ -13,8 +13,8 @@ public interface IUserService
     IEnumerable<User> GetAll();
     User GetById(int id);
     void Register(Register model);
-    //void Update(int id, UpdateRequest model);
-    //void Delete(int id);
+    void Update(int id, UpdateUsers model);
+    void Delete(int id);
 }
 
 public class UserService : IUserService
@@ -74,7 +74,7 @@ public class UserService : IUserService
         _context.SaveChanges();
     }
 
-    public void Update(int id, UpdateRequest model)
+    public void Update(int id, UpdateUsers model)
     {
         var user = getUser(id);
 

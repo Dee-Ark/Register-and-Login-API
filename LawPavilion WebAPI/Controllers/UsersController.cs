@@ -28,7 +28,7 @@ public class UsersController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("Login")]
+    [HttpPost("api/Login")]
     public IActionResult Authenticate(Login model)
     {
         var response = _userService.Authenticate(model);
@@ -36,7 +36,7 @@ public class UsersController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("Register")]
+    [HttpPost("api/Register")]
     public IActionResult Register(Register model)
     {
         _userService.Register(model);
@@ -50,24 +50,24 @@ public class UsersController : ControllerBase
         return Ok(users);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("api/{id}")]
     public IActionResult GetById(int id)
     {
         var user = _userService.GetById(id);
         return Ok(user);
     }
 
-    //[HttpPut("{id}")]
-    //public IActionResult Update(int id, UpdateRequest model)
-    //{
-    //    _userService.Update(id, model);
-    //    return Ok(new { message = "User updated successfully" });
-    //}
+    [HttpPut("api/{id}")]
+    public IActionResult Update(int id, UpdateUsers model)
+    {
+        _userService.Update(id, model);
+        return Ok(new { message = "User updated successfully" });
+    }
 
-    //[HttpDelete("{id}")]
-    //public IActionResult Delete(int id)
-    //{
-    //    _userService.Delete(id);
-    //    return Ok(new { message = "User deleted successfully" });
-    //}
+    [HttpDelete("api/{id}")]
+    public IActionResult Delete(int id)
+    {
+        _userService.Delete(id);
+        return Ok(new { message = "User deleted successfully" });
+    }
 }

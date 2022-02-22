@@ -1,6 +1,6 @@
 namespace WebApi.Models.Users;
 
-public class UpdateRequest
+public class UpdateUsers
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

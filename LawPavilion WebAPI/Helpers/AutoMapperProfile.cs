@@ -15,7 +15,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Register, User>();
 
         // UpdateRequest -> User
-        CreateMap<UpdateRequest, User>()
+        CreateMap<UpdateUsers, User>()
             .ForAllMembers(x => x.Condition(
                 (src, dest, prop) =>
                 {
