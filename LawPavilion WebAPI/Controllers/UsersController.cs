@@ -43,7 +43,7 @@ public class UsersController : ControllerBase
         return Ok(new { message = "Registration successful" });
     }
 
-    [HttpGet]
+    [HttpGet("api/users")]
     public IActionResult GetAll()
     {
         var users = _userService.GetAll();
